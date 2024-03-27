@@ -1,58 +1,57 @@
-## Sales Insights Data Analysis Project
+Project Name - E-Commerce Sales Analysis
+Following are the steps involved in making the project.
 
-### Instructions to setup mysql on your local computer
+Step 1: Identifying Problem Statement
 
-1. Follow step in this video to install mysql on your local computer
-https://www.youtube.com/watch?v=WuBcTJnIuzo
+Description:
+Clearly define the objective of the project. Understand the business requirements and identify the key areas where data analysis can provide insights and solutions.
+Enhancement:
+Conduct stakeholder interviews to gather detailed requirements.
+Prioritize problems based on their impact on business objectives.
+Define measurable goals and success criteria for the project.
+Step 2: Data Discovery
 
-1. SQL database dump is in db_dump.sql file above. Download `db_dump.sql` file to your local computer and import it as per instructions given in the tutorial video
+Description:
+Gather relevant data sources that can provide insights into the identified problem statement.
+Explore the available data to understand its structure, quality, and relevance to the problem.
+Enhancement:
+Perform data profiling to understand the characteristics and distribution of the data.
+Identify potential data gaps or inconsistencies that may impact the analysis.
+Document metadata including data sources, formats, and any data transformations needed.
+Step 3: Data Analysis using SQL
 
-### Data Analysis Using SQL
+Description:
+Utilize SQL queries to perform exploratory data analysis (EDA) and extract meaningful insights from the data.
+Analyze data patterns, trends, and relationships to gain a deeper understanding of the problem domain.
+Enhancement:
+Apply advanced SQL techniques such as window functions, subqueries, and joins for complex analysis.
+Incorporate statistical analysis to identify correlations and outliers in the data.
+Document SQL queries and their results for reproducibility and transparency.
+Step 4: Data Cleaning and ETL (Extract, Transform, Load)
 
-1. Show all customer records
+Description:
+Cleanse the data by removing duplicates, handling missing values, and correcting errors to ensure data quality.
+Transform the data into a format suitable for analysis by applying necessary data transformations and aggregations.
+Enhancement:
+Implement automated data cleaning processes to streamline repetitive tasks.
+Develop data validation checks to ensure accuracy and consistency throughout the ETL process.
+Document data cleaning procedures and transformations applied to maintain an auditable trail.
+Step 5: Building Dashboard in Power BI
 
-    `SELECT * FROM customers;`
+Description:
+Create interactive dashboards and reports in Power BI to visualize the insights derived from the data analysis.
+Design intuitive visualizations that effectively communicate key metrics and trends to stakeholders.
+Enhancement:
+Customize dashboard layouts and themes to align with the branding and preferences of stakeholders.
+Incorporate interactive features such as drill-downs, filters, and slicers to enable deeper exploration of the data.
+Conduct usability testing with end-users to gather feedback and refine the dashboard design for optimal usability.
 
-1. Show total number of customers
+Below is the dashboard ss which I made using PowerBi.
+Key_Insight
+![si_1](https://github.com/Harsh-g-30/E-Commerce-Sales-Analysis/assets/80643973/51bc70d9-feee-4e49-a595-a2644ed1eb5e)
 
-    `SELECT count(*) FROM customers;`
+Profit Analysis
+![si_2](https://github.com/Harsh-g-30/E-Commerce-Sales-Analysis/assets/80643973/4e798c27-8b79-4c0b-b01d-4ca38a93efc4)
 
-1. Show transactions for Chennai market (market code for chennai is Mark001
-
-    `SELECT * FROM transactions where market_code='Mark001';`
-
-1. Show distrinct product codes that were sold in chennai
-
-    `SELECT distinct product_code FROM transactions where market_code='Mark001';`
-
-1. Show transactions where currency is US dollars
-
-    `SELECT * from transactions where currency="USD"`
-
-1. Show transactions in 2020 join by date table
-
-    `SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;`
-
-1. Show total revenue in year 2020,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";`
-	
-1. Show total revenue in year 2020, January Month,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");`
-
-1. Show total revenue in year 2020 in Chennai
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020
-and transactions.market_code="Mark001";`
-
-
-Data Analysis Using Power BI
-============================
-
-1. Formula to create norm_amount column
-
-`= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] = "USD" or [currency] ="USD#(cr)" then [sales_amount]*75 else [sales_amount], type any)`
-
-
-
+Performance Insight
+![si_3](https://github.com/Harsh-g-30/E-Commerce-Sales-Analysis/assets/80643973/5c3dd760-2bbb-4df0-bb67-a1d83a73ee8e)
